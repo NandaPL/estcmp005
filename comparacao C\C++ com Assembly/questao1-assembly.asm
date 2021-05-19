@@ -1,13 +1,3 @@
-section .data
-    msgInicio: db "Informe o valor de inicio do intervalo: ", 0
-    msgInicioT: equ $-msgInicio
-    msgFim: db "Informe o valor do fim do intervalo: ", 0
-    msgFimT: equ $-msgFim
-    entrada: db "%d", 0
-    saida: db "%d", 10, 0 
-    inicio: times 4 db 0 
-    fim: times 4 db 0
-
 section .text
    global main
    extern scanf
@@ -19,7 +9,6 @@ main:
    mov ebx, 1
    mov ecx, msgInicio
    mov edx, msgInicioT
-   int 80h
 
    mov rdi, entrada
    mov rsi, inicio
@@ -30,7 +19,6 @@ main:
    mov ebx, 1
    mov ecx, msgFim
    mov edx, msgFimT
-   int 80h
 
    mov rdi, entrada
    mov rsi, fim
@@ -45,7 +33,6 @@ main:
    mov [inicio], ebx
    mov [fim], eax
    end_swap:
-
    mov ebx, [inicio]
    loop:
       inc ebx
@@ -60,8 +47,13 @@ main:
 
    pop rbx            
    mov rax, 0
-
    mov eax, 1
    mov ebx, 0
-   int 80h
-    
+
+section .data
+    msgInicio: db "Informe o valor de inicio do intervalo: ", 0
+    msgFim: db "Informe o valor do fim do intervalo: ", 0
+    entrada: db "%d", 0
+    saida: db "%d", 10, 0 
+    inicio: times 4 db 0 
+    fim: times 4 db 0
